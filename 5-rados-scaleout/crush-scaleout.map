@@ -1,0 +1,1522 @@
+# begin crush map
+tunable choose_local_tries 0
+tunable choose_local_fallback_tries 0
+tunable choose_total_tries 50
+tunable chooseleaf_descend_once 1
+tunable chooseleaf_vary_r 1
+tunable straw_calc_version 1
+
+# devices
+device 0 osd.0
+device 1 osd.1
+device 2 osd.2
+device 3 osd.3
+device 4 osd.4
+device 5 osd.5
+device 6 osd.6
+device 7 osd.7
+device 8 osd.8
+device 9 osd.9
+device 10 osd.10
+device 11 osd.11
+device 12 osd.12
+device 13 osd.13
+device 14 osd.14
+device 15 osd.15
+device 16 osd.16
+device 17 osd.17
+device 18 osd.18
+device 19 osd.19
+device 20 osd.20
+device 21 osd.21
+device 22 osd.22
+device 23 osd.23
+device 24 osd.24
+device 25 osd.25
+device 26 osd.26
+device 27 osd.27
+device 28 osd.28
+device 29 osd.29
+device 30 osd.30
+device 31 osd.31
+device 32 osd.32
+device 33 osd.33
+device 34 osd.34
+device 35 osd.35
+
+# types
+type 0 osd
+type 1 host
+type 2 chassis
+type 3 rack
+type 4 row
+type 5 pdu
+type 6 pod
+type 7 room
+type 8 datacenter
+type 9 region
+type 10 root
+
+# buckets
+host osd1 {
+	id -2		# do not change unnecessarily
+	# weight 65.473
+	alg straw
+	hash 0	# rjenkins1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+	item osd.10 weight 5.456
+	item osd.11 weight 5.456
+}
+host osd2 {
+	id -3		# do not change unnecessarily
+	# weight 65.473
+	alg straw
+	hash 0	# rjenkins1
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+	item osd.22 weight 5.456
+	item osd.23 weight 5.456
+}
+host osd3 {
+	id -4		# do not change unnecessarily
+	# weight 65.473
+	alg straw
+	hash 0	# rjenkins1
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+	item osd.34 weight 5.456
+	item osd.35 weight 5.456
+}
+root default {
+	id -1		# do not change unnecessarily
+	# weight 196.419
+	alg straw
+	hash 0	# rjenkins1
+	item osd1 weight 65.473
+	item osd2 weight 65.473
+	item osd3 weight 65.473
+}
+root root_scaleout_1 { 
+	id -5 
+	alg straw 
+	hash 0
+
+	# 1 OSDs active on node 1
+	item osd.0 weight 5.456
+
+	# 0 OSDs active on node 2
+
+	# 0 OSDs active on node 3
+}
+root root_scaleout_2 { 
+	id -6 
+	alg straw 
+	hash 0
+
+	# 1 OSDs active on node 1
+	item osd.0 weight 5.456
+
+	# 1 OSDs active on node 2
+	item osd.12 weight 5.456
+
+	# 0 OSDs active on node 3
+}
+root root_scaleout_3 { 
+	id -7 
+	alg straw 
+	hash 0
+
+	# 1 OSDs active on node 1
+	item osd.0 weight 5.456
+
+	# 1 OSDs active on node 2
+	item osd.12 weight 5.456
+
+	# 1 OSDs active on node 3
+	item osd.24 weight 5.456
+}
+root root_scaleout_4 { 
+	id -8 
+	alg straw 
+	hash 0
+
+	# 2 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+
+	# 1 OSDs active on node 2
+	item osd.12 weight 5.456
+
+	# 1 OSDs active on node 3
+	item osd.24 weight 5.456
+}
+root root_scaleout_5 { 
+	id -9 
+	alg straw 
+	hash 0
+
+	# 2 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+
+	# 2 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+
+	# 1 OSDs active on node 3
+	item osd.24 weight 5.456
+}
+root root_scaleout_6 { 
+	id -10 
+	alg straw 
+	hash 0
+
+	# 2 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+
+	# 2 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+
+	# 2 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+}
+root root_scaleout_7 { 
+	id -11 
+	alg straw 
+	hash 0
+
+	# 3 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+
+	# 2 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+
+	# 2 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+}
+root root_scaleout_8 { 
+	id -12 
+	alg straw 
+	hash 0
+
+	# 3 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+
+	# 3 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+
+	# 2 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+}
+root root_scaleout_9 { 
+	id -13 
+	alg straw 
+	hash 0
+
+	# 3 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+
+	# 3 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+
+	# 3 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+}
+root root_scaleout_10 { 
+	id -14 
+	alg straw 
+	hash 0
+
+	# 4 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+
+	# 3 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+
+	# 3 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+}
+root root_scaleout_11 { 
+	id -15 
+	alg straw 
+	hash 0
+
+	# 4 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+
+	# 4 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+
+	# 3 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+}
+root root_scaleout_12 { 
+	id -16 
+	alg straw 
+	hash 0
+
+	# 4 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+
+	# 4 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+
+	# 4 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+}
+root root_scaleout_13 { 
+	id -17 
+	alg straw 
+	hash 0
+
+	# 5 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+
+	# 4 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+
+	# 4 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+}
+root root_scaleout_14 { 
+	id -18 
+	alg straw 
+	hash 0
+
+	# 5 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+
+	# 5 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+
+	# 4 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+}
+root root_scaleout_15 { 
+	id -19 
+	alg straw 
+	hash 0
+
+	# 5 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+
+	# 5 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+
+	# 5 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+}
+root root_scaleout_16 { 
+	id -20 
+	alg straw 
+	hash 0
+
+	# 6 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+
+	# 5 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+
+	# 5 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+}
+root root_scaleout_17 { 
+	id -21 
+	alg straw 
+	hash 0
+
+	# 6 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+
+	# 6 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+
+	# 5 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+}
+root root_scaleout_18 { 
+	id -22 
+	alg straw 
+	hash 0
+
+	# 6 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+
+	# 6 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+
+	# 6 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+}
+root root_scaleout_19 { 
+	id -23 
+	alg straw 
+	hash 0
+
+	# 7 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+
+	# 6 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+
+	# 6 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+}
+root root_scaleout_20 { 
+	id -24 
+	alg straw 
+	hash 0
+
+	# 7 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+
+	# 7 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+
+	# 6 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+}
+root root_scaleout_21 { 
+	id -25 
+	alg straw 
+	hash 0
+
+	# 7 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+
+	# 7 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+
+	# 7 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+}
+root root_scaleout_22 { 
+	id -26 
+	alg straw 
+	hash 0
+
+	# 8 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+
+	# 7 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+
+	# 7 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+}
+root root_scaleout_23 { 
+	id -27 
+	alg straw 
+	hash 0
+
+	# 8 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+
+	# 8 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+
+	# 7 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+}
+root root_scaleout_24 { 
+	id -28 
+	alg straw 
+	hash 0
+
+	# 8 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+
+	# 8 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+
+	# 8 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+}
+root root_scaleout_25 { 
+	id -29 
+	alg straw 
+	hash 0
+
+	# 9 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+
+	# 8 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+
+	# 8 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+}
+root root_scaleout_26 { 
+	id -30 
+	alg straw 
+	hash 0
+
+	# 9 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+
+	# 9 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+
+	# 8 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+}
+root root_scaleout_27 { 
+	id -31 
+	alg straw 
+	hash 0
+
+	# 9 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+
+	# 9 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+
+	# 9 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+}
+root root_scaleout_28 { 
+	id -32 
+	alg straw 
+	hash 0
+
+	# 10 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+
+	# 9 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+
+	# 9 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+}
+root root_scaleout_29 { 
+	id -33 
+	alg straw 
+	hash 0
+
+	# 10 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+
+	# 10 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+
+	# 9 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+}
+root root_scaleout_30 { 
+	id -34 
+	alg straw 
+	hash 0
+
+	# 10 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+
+	# 10 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+
+	# 10 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+}
+root root_scaleout_31 { 
+	id -35 
+	alg straw 
+	hash 0
+
+	# 11 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+	item osd.10 weight 5.456
+
+	# 10 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+
+	# 10 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+}
+root root_scaleout_32 { 
+	id -36 
+	alg straw 
+	hash 0
+
+	# 11 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+	item osd.10 weight 5.456
+
+	# 11 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+	item osd.22 weight 5.456
+
+	# 10 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+}
+root root_scaleout_33 { 
+	id -37 
+	alg straw 
+	hash 0
+
+	# 11 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+	item osd.10 weight 5.456
+
+	# 11 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+	item osd.22 weight 5.456
+
+	# 11 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+	item osd.34 weight 5.456
+}
+root root_scaleout_34 { 
+	id -38 
+	alg straw 
+	hash 0
+
+	# 12 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+	item osd.10 weight 5.456
+	item osd.11 weight 5.456
+
+	# 11 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+	item osd.22 weight 5.456
+
+	# 11 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+	item osd.34 weight 5.456
+}
+root root_scaleout_35 { 
+	id -39 
+	alg straw 
+	hash 0
+
+	# 12 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+	item osd.10 weight 5.456
+	item osd.11 weight 5.456
+
+	# 12 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+	item osd.22 weight 5.456
+	item osd.23 weight 5.456
+
+	# 11 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+	item osd.34 weight 5.456
+}
+root root_scaleout_36 { 
+	id -40 
+	alg straw 
+	hash 0
+
+	# 12 OSDs active on node 1
+	item osd.0 weight 5.456
+	item osd.1 weight 5.456
+	item osd.2 weight 5.456
+	item osd.3 weight 5.456
+	item osd.4 weight 5.456
+	item osd.5 weight 5.456
+	item osd.6 weight 5.456
+	item osd.7 weight 5.456
+	item osd.8 weight 5.456
+	item osd.9 weight 5.456
+	item osd.10 weight 5.456
+	item osd.11 weight 5.456
+
+	# 12 OSDs active on node 2
+	item osd.12 weight 5.456
+	item osd.13 weight 5.456
+	item osd.14 weight 5.456
+	item osd.15 weight 5.456
+	item osd.16 weight 5.456
+	item osd.17 weight 5.456
+	item osd.18 weight 5.456
+	item osd.19 weight 5.456
+	item osd.20 weight 5.456
+	item osd.21 weight 5.456
+	item osd.22 weight 5.456
+	item osd.23 weight 5.456
+
+	# 12 OSDs active on node 3
+	item osd.24 weight 5.456
+	item osd.25 weight 5.456
+	item osd.26 weight 5.456
+	item osd.27 weight 5.456
+	item osd.28 weight 5.456
+	item osd.29 weight 5.456
+	item osd.30 weight 5.456
+	item osd.31 weight 5.456
+	item osd.32 weight 5.456
+	item osd.33 weight 5.456
+	item osd.34 weight 5.456
+	item osd.35 weight 5.456
+}
+
+# rules
+rule replicated_ruleset {
+	ruleset 0
+	type replicated
+	min_size 1
+	max_size 10
+	step take default
+	step chooseleaf firstn 0 type host
+	step emit
+}
+rule rule_scaleout_1 { 
+	ruleset 1 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_1 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_2 { 
+	ruleset 2 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_2 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_3 { 
+	ruleset 3 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_3 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_4 { 
+	ruleset 4 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_4 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_5 { 
+	ruleset 5 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_5 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_6 { 
+	ruleset 6 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_6 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_7 { 
+	ruleset 7 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_7 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_8 { 
+	ruleset 8 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_8 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_9 { 
+	ruleset 9 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_9 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_10 { 
+	ruleset 10 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_10 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_11 { 
+	ruleset 11 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_11 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_12 { 
+	ruleset 12 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_12 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_13 { 
+	ruleset 13 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_13 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_14 { 
+	ruleset 14 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_14 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_15 { 
+	ruleset 15 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_15 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_16 { 
+	ruleset 16 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_16 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_17 { 
+	ruleset 17 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_17 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_18 { 
+	ruleset 18 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_18 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_19 { 
+	ruleset 19 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_19 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_20 { 
+	ruleset 20 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_20 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_21 { 
+	ruleset 21 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_21 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_22 { 
+	ruleset 22 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_22 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_23 { 
+	ruleset 23 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_23 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_24 { 
+	ruleset 24 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_24 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_25 { 
+	ruleset 25 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_25 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_26 { 
+	ruleset 26 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_26 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_27 { 
+	ruleset 27 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_27 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_28 { 
+	ruleset 28 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_28 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_29 { 
+	ruleset 29 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_29 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_30 { 
+	ruleset 30 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_30 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_31 { 
+	ruleset 31 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_31 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_32 { 
+	ruleset 32 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_32 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_33 { 
+	ruleset 33 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_33 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_34 { 
+	ruleset 34 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_34 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_35 { 
+	ruleset 35 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_35 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+rule rule_scaleout_36 { 
+	ruleset 36 
+	type replicated 
+	min_size 1 
+	max_size 10 
+	step take root_scaleout_36 
+	step chooseleaf firstn 0 type osd 
+	step emit 
+}
+
+# end crush map
