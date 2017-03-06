@@ -8,6 +8,7 @@ set style fill solid 1.0 border -1
 set key bottom right
 set ylabel "Aggregate Read Bandwidth (MB/s)"
 set xlabel "OSDs active"
+set grid
 
 set xrange [-1:8.5]
 set yrange [0:2000]
@@ -26,6 +27,6 @@ plot 'iperf3-sdb.dat' using ($2/1000000.0) t "OSD 1" lc rgb "#782D31", \
      'iperf3-sdm.dat' using ($2/1000000.0) t "OSD 11" lc rgb "#81BA77", \
      'iperf3-sdn.dat' using ($2/1000000.0) t "OSD 12" lc rgb "#A0D898", \
      'iperf3-sdi.dat' using ($2/1000000.0):xticlabels(1) t "Journal SSD" lc rgb "#E0DCB3", \
-     1250 t "10G Line rate" lc rgb "#F0A0A0" lw 3
+     1250 t "10G Line rate" lc rgb "#707474" lw 3
 
 #pause -1
