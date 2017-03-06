@@ -8,6 +8,7 @@ set style fill solid 1.0 border -1
 set key bottom right
 set ylabel "Aggregate Read Bandwidth (MB/s)"
 set xlabel "OSDs active"
+set grid
 
 set xrange [-1:8.5]
 set yrange [0:2000]
