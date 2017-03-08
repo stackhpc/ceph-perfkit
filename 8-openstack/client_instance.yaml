@@ -1,0 +1,97 @@
+---
+heat_template_version: 2015-10-15
+
+description: >
+  Heat resource for a Ceph benchmarking client with two (Ceph backed)
+  Cinder volumes attached.
+
+parameters:
+  client_name:
+    type: string
+    label: Client instance name prefix
+    default: 'client'
+  client_count:
+    type: number
+    label: Number of client instances to create
+    default: 4
+  client_flavor:
+    type: string
+    label: Flavor name or UUID
+    default: 'm1.large'
+  client_image:
+    type: string
+    label: Image name or UUID
+    default: 'Fedora 24'
+  client_network:
+    type: string
+    label: Network data for instance connectivity
+  client_az:
+    type: string
+    label: Availability Zone for launching client instances
+    default: 'nova-1-wcdc'
+  ssh_key:
+    type: string
+    label: SSH key pair name
+    default: 'dev_director'
+  cinder_backend:
+    type: string
+    label: Name of the Ceph volume backend in Cinder
+    default: 'RDS-AZ-WCDC-CP1'
+  floating_network:
+    type: string
+    label: Name of the floating IP network
+    default: 'CUDN-Private'
+    
+resources:
+  client_dev_1:
+    type: OS::Cinder::Volume
+    properties:
+      size: 125
+      volume_type: { get_param: cinder_backend }
+
+  client_dev_2:
+    type: OS::Cinder::Volume
+    properties:
+      size: 125
+      volume_type: { get_param: cinder_backend }
+
+  client_attach_1:
+    type: OS::Cinder::VolumeAttachment
+    properties:
+      volume_id: { get_resource: client_dev_1 }
+      instance_uuid: { get_resource: client_instance }
+
+  client_attach_2:
+    type: OS::Cinder::VolumeAttachment
+    properties:
+      volume_id: { get_resource: client_dev_2 }
+      instance_uuid: { get_resource: client_instance }
+
+  client_nic:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_param: client_network }
+      port_security_enabled: True
+      security_groups: [ 'SSH' ]
+
+  client_fip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network: { get_param: floating_network }
+
+  client_fip_association:
+    type: OS::Neutron::FloatingIPAssociation
+    properties:
+      floatingip_id: { get_resource: client_fip }
+      port_id: { get_resource: client_nic }
+
+  client_instance:
+    type: OS::Nova::Server
+    properties:
+      name: { get_param: client_name }
+      flavor: { get_param: client_flavor }
+      availability_zone: { get_param: client_az }
+      image: { get_param: client_image }
+      key_name: { get_param: ssh_key }
+      networks: [ port: { get_resource: client_nic } ]
+        
