@@ -1,0 +1,64 @@
+---
+heat_template_version: 2015-10-15
+
+description: >
+  Heat stack for orchestrating Ceph test client infrastructure:
+  a number of (Ceph backed) Cinder volumes, a group of Nova instances
+  to function as Ceph clients and attachment of volumes to clients.
+
+parameters:
+  client_count:
+    type: number
+    label: Number of client instances to create
+    default: 4
+
+resources:
+  client_net:
+    type: OS::Neutron::Net
+    properties:
+      name: 'ceph_bench_net'
+      shared: False
+      admin_state_up: True
+      port_security_enabled: True
+
+  client_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      name: 'ceph_bench_subnet'
+      network: { get_resource: client_net }
+      cidr: '192.168.4.0/24'
+      enable_dhcp: True
+      dns_nameservers: [ "131.111.8.42" ]
+
+  client_gw:
+    type: OS::Neutron::Router
+    properties:
+      name: 'ceph_bench_gw'
+      external_gateway_info:
+        network: 'CUDN-Private'
+
+  client_gw_if:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router_id: { get_resource: client_gw }
+      subnet_id: { get_resource: client_subnet }
+
+  client_fw_ssh:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: 'SSH'
+      description: 'Enable SSH access'
+      rules: [ { direction: 'ingress', ethertype: 'IPv4', protocol: 'tcp', port_range_min: 22, port_range_max: 22 } ]
+
+
+  client_group:
+    type: OS::Heat::ResourceGroup
+    properties:
+      count: { get_param: client_count }
+      resource_def:
+        type: client_instance.yaml
+        properties:
+          client_name: client-%index%
+          client_network: 'ceph_bench_net'
+          #client_network: { get_resource: client_net }
+

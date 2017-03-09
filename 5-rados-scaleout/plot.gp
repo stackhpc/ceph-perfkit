@@ -4,11 +4,12 @@ set output "rados-scaleout.png"
 set key top left
 set ylabel "RADOS Object Bandwidth (MB/s)"
 set xlabel "OSDs in Ceph pool"
+set grid
 
 set xrange [0:38]
 set yrange [0:1000]
 
-plot 'rados-scaleout.dat' using 1:2 with linespoints lw 4 lc rgb "#E0DAB3" t "RADOS write", \
-     'rados-scaleout.dat' using 1:3 with linespoints lw 4 lc rgb "#707474" t "RADOS read"
+plot 'rados-scaleout.dat' using 1:2 with linespoints lw 3 lc rgb "#E0DAB3" t "RADOS write", \
+     'rados-scaleout.dat' using 1:3 with linespoints lw 3 lc rgb "#707474" t "RADOS read"
 
 #pause -1
