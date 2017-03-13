@@ -11,12 +11,27 @@ parameters:
     type: number
     label: Number of client instances to create
     default: 4
+  client_net_name:
+    type: string
+    label: Name of the Ceph client VTN
+    default: 'ceph_client_net'
+  stack_dns:
+    type: json
+    label: List of nameserver IPs to provide to instances
+    default: [ "131.111.8.42" ]
+  floating_network:
+    type: string
+    label: The network from which a floating IP is allocated
+  client_secgroup:
+    type: string
+    label: The name of the security group created for SSH access to Ceph clients
+    default: 'Ceph-SSH'
 
 resources:
   client_net:
     type: OS::Neutron::Net
     properties:
-      name: 'ceph_bench_net'
+      name: { get_param: client_net_name }
       shared: False
       admin_state_up: True
       port_security_enabled: True
@@ -28,14 +43,14 @@ resources:
       network: { get_resource: client_net }
       cidr: '192.168.4.0/24'
       enable_dhcp: True
-      dns_nameservers: [ "131.111.8.42" ]
+      dns_nameservers: { get_param: stack_dns }
 
   client_gw:
     type: OS::Neutron::Router
     properties:
       name: 'ceph_bench_gw'
       external_gateway_info:
-        network: 'CUDN-Private'
+        network: { get_param: floating_network }
 
   client_gw_if:
     type: OS::Neutron::RouterInterface
@@ -46,10 +61,9 @@ resources:
   client_fw_ssh:
     type: OS::Neutron::SecurityGroup
     properties:
-      name: 'SSH'
-      description: 'Enable SSH access'
+      name: { get_param: client_secgroup }
+      description: 'Enable SSH access to Ceph benchmark clients'
       rules: [ { direction: 'ingress', ethertype: 'IPv4', protocol: 'tcp', port_range_min: 22, port_range_max: 22 } ]
-
 
   client_group:
     type: OS::Heat::ResourceGroup
@@ -59,6 +73,6 @@ resources:
         type: client_instance.yaml
         properties:
           client_name: client-%index%
-          client_network: 'ceph_bench_net'
-          #client_network: { get_resource: client_net }
+          client_network: { get_param: client_net_name }
+          client_secgroup: { get_param: client_secgroup }
 

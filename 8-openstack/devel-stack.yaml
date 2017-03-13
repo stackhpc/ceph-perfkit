@@ -1,0 +1,12 @@
+---
+# Parameters for booting an instance on the Cambridge dev environment
+# invocation:
+# heat stack-create ceph_bench -f ceph_bench_setup.yaml -e devel-stack.yaml
+parameter_defaults:
+  client_count: 1
+  client_flavor: 'numa-pinned'
+  client_image: 'CentOS 7.2 1605'
+  client_az: 'nova'
+  ssh_key: 'stack_rsa'
+  cinder_backend: 'SoftIron'
+  floating_network: 'dev-net'

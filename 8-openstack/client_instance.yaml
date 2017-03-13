@@ -21,26 +21,25 @@ parameters:
   client_image:
     type: string
     label: Image name or UUID
-    default: 'Fedora 24'
   client_network:
     type: string
     label: Network data for instance connectivity
   client_az:
     type: string
     label: Availability Zone for launching client instances
-    default: 'nova-1-wcdc'
+    default: 'nova'
+  client_secgroup:
+    type: string
+    label: The name of the security group created for SSH access to Ceph clients
   ssh_key:
     type: string
     label: SSH key pair name
-    default: 'dev_director'
   cinder_backend:
     type: string
     label: Name of the Ceph volume backend in Cinder
-    default: 'RDS-AZ-WCDC-CP1'
   floating_network:
     type: string
     label: Name of the floating IP network
-    default: 'CUDN-Private'
     
 resources:
   client_dev_1:
@@ -72,7 +71,7 @@ resources:
     properties:
       network: { get_param: client_network }
       port_security_enabled: True
-      security_groups: [ 'SSH' ]
+      security_groups: [ {get_param: client_secgroup} ]
 
   client_fip:
     type: OS::Neutron::FloatingIP

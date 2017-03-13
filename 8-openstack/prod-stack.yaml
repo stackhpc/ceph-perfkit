@@ -1,0 +1,12 @@
+---
+# Parameters for booting an instance on the Cambgridge production environment
+# invocation:
+# heat stack-create ceph_bench -f ceph_bench_setup.yaml -e prod-stack.yaml
+parameter_defaults:
+  client_count: 1
+  client_flavor: 'm1.large'
+  client_image: 'Fedora 24'
+  client_az: 'nova-1-wcdc'
+  ssh_key: 'dev_director'
+  cinder_backend: 'RDS-AZ-WCDC-CP1'
+  floating_network: 'CUDN-Private'
