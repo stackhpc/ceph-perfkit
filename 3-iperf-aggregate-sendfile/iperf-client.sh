@@ -2,6 +2,7 @@
 
 target=$1
 
+# Running on the SoftIron OSD server:
 # Generate a lookup table of HDDs to include, in a sort-of
 # alternating order between SATA controllers
 i=0

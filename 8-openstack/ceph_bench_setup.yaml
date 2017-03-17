@@ -1,6 +1,18 @@
 ---
 heat_template_version: 2015-10-15
 
+# This is a Heat stack for automating creation of a configured number of
+# cmopute instances, with two Cinder volumes attached to each.
+#
+# The Heat stack is created using (for example):
+# heat stack-create ceph_bench -f ceph_bench_setup.yaml -e devel-stack.yaml
+#
+# The resources used in the test configuration are then deleted using:
+# heat stack-delete ceph_bench
+#
+# Parameters are typically redefined according to local config in an
+# environment file (see prod-stack.yaml and devel-stack.yaml)
+
 description: >
   Heat stack for orchestrating Ceph test client infrastructure:
   a number of (Ceph backed) Cinder volumes, a group of Nova instances

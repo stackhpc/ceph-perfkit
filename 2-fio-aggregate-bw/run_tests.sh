@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# For all fio test configuration files, run the test and collect data
 for i in 0 2 4 6 8 10 all
 do
     fio journal+$i.fio
