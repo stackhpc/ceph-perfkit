@@ -2,7 +2,7 @@
 
 # Extract data for each dev
 # Transpose to produce a plot data file
-for i in $(seq 2 2 12)
+for i in {1..10}
 do 
     > iostat-${dev}.dat
     ./munge_iostat.awk iostat-${i}.dat | \

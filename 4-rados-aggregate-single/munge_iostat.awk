@@ -32,6 +32,7 @@ BEGIN { osd["sdb"] = 0; count["sdb"] = 0; last["sdb"] = 0;
         osd["sdm"] = 0; count["sdm"] = 0; last["sdm"] = 0;
         osd["sdn"] = 0; count["sdn"] = 0; last["sdn"] = 0; }
 
+# Ignore the first data from iostat, we need data collected per second
 $1 in osd && $3 > 0.0 { if (count[$1]!=0) { osd[$1] += $3; } last[$1] = $3; count[$1]++ }
 
 END {
