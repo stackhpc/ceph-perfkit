@@ -1,18 +1,19 @@
 #!/bin/bash
 
-for i in 0 2 4 6 8 10 all
+for i in {1..10}
 do
-    fio journal+$i.fio
-    for file in journal+$i-*.log_bw.*.log
+    fio hdd-read-$i.fio
+    for file in hdd-read-$i-*.log_bw.*.log
     do
         echo $file $(awk '{sum+=$2; n++} END {print sum/n}' $file) >> results-$i.dat
     done
 done
 
 # Transpose by device
-for dev in journal sdb sdc sdd sde sdf sdg sdh sdi sdj sdk sdl sdm sdn
+for dev in sdd sde sdf sdg sdh \
+           sdj sdk sdl sdm sdn
 do
-    for i in 0 2 4 6 8 10 all
+    for i in {1..10}
     do
         dev_bw=$(grep $dev.log_bw results-$i.dat | cut -d ' ' -f 2)
         [ -z "$dev_bw" ] && dev_bw="0"
