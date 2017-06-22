@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Transform an fio result data file into a columnar file for use in Gnuplot
+
 for i in $(seq 1 12)
 do
     fio_log=sdi-fio-$i.dat

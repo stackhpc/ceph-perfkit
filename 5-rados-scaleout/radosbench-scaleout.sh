@@ -1,5 +1,8 @@
 #!/bin/bash -x
 
+# Test script run from a remote test client to use rados bench to measure
+# read and write performance for storage pools containing varying numbers of OSDs
+
 # Run the test setup on all pools first, to drive data through the cache
 # ... and out the other side
 for i in {1..36}

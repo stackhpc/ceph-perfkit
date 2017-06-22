@@ -1,0 +1,13 @@
+[global]
+ioengine=rbd
+clientname=admin
+pool=rbd
+rbdname=bench
+invalidate=0    # mandatory
+runtime=120
+#write_iops_log=softiron-iops.log
+
+[bench]
+bs=256k
+rw=randwrite
+iodepth=64

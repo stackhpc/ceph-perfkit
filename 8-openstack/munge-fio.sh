@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Given a number of fio log files, extract bandwidth results and emit 
+# in a columnar formwat suitable for a Gnuplot data file. 
+
 function extract_bw()
 {
     op=$1
