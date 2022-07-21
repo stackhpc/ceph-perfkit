@@ -1,6 +1,14 @@
 ## Ceph perfkit
 Tools for benchmarking Ceph clusters
 
+### Requirements
+```
+python3
+fio
+iperf
+ceph
+```
+
 ### Install
 ```bash
 git clone https://github.com/stackhpc/ceph-perfkit
