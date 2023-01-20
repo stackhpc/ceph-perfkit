@@ -25,6 +25,9 @@ Evaluate the IO bandwidth and IOPs of a single disk with multiple concurrent IO 
 
 Useful for benchmarking the performance of a Ceph journal device.
 
+This benchmark is designed to be run directly on a Ceph OSD host, targeting a single journal drive:
+`./1-journal-write-bw/fio-single-disk-io.py -o single-disk-io /dev/nvme0n1`
+
 ```
 ./1-journal-write-bw/fio-single-disk-io.py --help
 usage: fio-single-disk-io.py [-h] [-c] [-o OUTDIR] [-b BS] [-m MODE] [-r RUNTIME] [-f FILESIZE] device max_numjobs
@@ -52,6 +55,12 @@ options:
 Evaluate the IO bandwidth and IOPs of multiple disks attached to a single OSD host.
 
 Useful for benchmarking the performance of Ceph OSD disks attached to an OSD host.
+
+This benchmark is designed to be run directly on a Ceph OSD host, targeting all OSD drives on the host:
+`./2-fio-aggregate-bw/fio-agg-disk-io.py -o aggregate-disk-io /dev/sd*`
+
+or a subset:
+`./2-fio-aggregate-bw/fio-agg-disk-io.py -o aggregate-disk-io /dev/sda /dev/sdc /dev/sdn`
 
 ```
 ./2-fio-aggregate-bw/fio-agg-disk-io.py --help
@@ -82,6 +91,7 @@ Useful for benchmarking the inter-node performance of Ceph OSD nodes.
 
 Requires `iperf3` servers listening on as many ports as you have OSD disks that you want to test the performance of.
 
+This benchmark is designed to be run directly between two Ceph OSD hosts, targeting all OSD drives on the client host:
 ```bash
 # On server, to benchmark 24 disks
 ./3-iperf-aggregate-sendfile/iperf-server.sh {1..24}
@@ -92,7 +102,7 @@ Requires `iperf3` servers listening on as many ports as you have OSD disks that 
 ./3-iperf-aggregate-sendfile/iperf3-client-agg-disk-io.py <iperf-server-address> /dev/sd{a..x}
 ```
 
-```bash
+```
 ./3-iperf-aggregate-sendfile/iperf3-client-agg-disk-io.py --help
 usage: iperf3-client-agg-disk-io.py [-h] [-p PORT_START] [-c] [-o OUTDIR] [-r RUNTIME] [-n NETWORK_LINE_RATE] iperf3_server device [device ...]
 
@@ -119,8 +129,14 @@ options:
 ### rados-scaleout
 Evaluate the seqread/randread/write bandwidth of ceph pools targeting increasing numbers of OSDs in turn. This tool is intended to be run using a custom CRUSH map, which defines rules incorporating increasing numbers of OSDs. An example crushmap is provided in `5-rados-scaleout/crush-scaleout.map`, but it is important that this adapted to your environment and **provided as a compiled crushmap**.
 
+This benchmark is designed to be run from a host running the Ceph Mon daemon, with the `ceph` and `rados` commands available, and `admin` access to the target Ceph cluster.
+
+The following command replicates the benchmark that `crush-scaleout.map` was generated for:
+
+`./5-rados-scaleout/rados-bench-scaleout.py -p rule_scaleout_ 5-rados-scaleout/crush-scalout.map {1..36}`
+
 ```bash
-./rados-bench-scaleout.py --help
+./5-rados-scaleout/rados-bench-scaleout.py --help
 usage: rados-bench-scaleout.py [-h] -p RULE_PREFIX [-d] [-a ACTIVE_OSDS [ACTIVE_OSDS ...]] [-c] [-o OUTDIR] [-r RUNTIME] [-pg PG_NUM] [-pgp PGP_NUM] [-s SIZE] [-m MIN_SIZE]
                                [-t CONCURRENT_OPERATIONS] [-n NETWORK_LINE_RATE]
                                crushmap rule_suffix [rule_suffix ...]
