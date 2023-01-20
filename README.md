@@ -1,6 +1,9 @@
 ## Ceph perfkit
 Tools for benchmarking Ceph clusters
 
+:warning: **These tests are destructive and may read and write data directly to storage devices**: Do not run these tests on nodes that are part of a working Ceph cluster!
+
+
 ### Requirements
 ```
 python3
